@@ -13,12 +13,17 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer(many=False, read_only=True)
+    author_id = serializers.UUIDField(write_only=True)
+
     class Meta:
         model = Article
         fields = '__all__'
 
 
 class ArticleAnonSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer(many=False, read_only=True)
+
     class Meta:
         model = Article
         fields = ('id', 'author', 'category', 'title', 'summary', 'first_paragraph')
