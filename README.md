@@ -5,5 +5,5 @@ Uma API feita utilizando o django rest framework e banco de dados PostgreSQL num
    pip install requirements.txt
 
 -- Como rodar:
-   docker-compose up
+   docker-compose up |
    python manage.py runserver
