@@ -7,6 +7,19 @@
 	"item": [
 		{
 			"name": "Articles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -19,7 +32,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{URL}}/articles/",
 					"host": [
@@ -35,6 +54,17 @@
 		},
 		{
 			"name": "Authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -47,7 +77,14 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
 					"raw": "{{URL}}/authors/",
 					"host": [
@@ -63,6 +100,19 @@
 		},
 		{
 			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -71,12 +121,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "",
+							"value": "admin",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "",
+							"value": "admin",
 							"type": "text"
 						}
 					]
@@ -99,8 +149,38 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "{{URL}}/register/?first_name&last_name&email&username&password",
+					"raw": "{{URL}}/register/",
 					"host": [
 						"{{URL}}"
 					],
@@ -110,24 +190,29 @@
 					],
 					"query": [
 						{
-							"key": "first_name",
-							"value": null
+							"key": "",
+							"value": null,
+							"disabled": true
 						},
 						{
-							"key": "last_name",
-							"value": null
+							"key": "",
+							"value": null,
+							"disabled": true
 						},
 						{
-							"key": "email",
-							"value": null
+							"key": "",
+							"value": null,
+							"disabled": true
 						},
 						{
-							"key": "username",
-							"value": null
+							"key": "",
+							"value": null,
+							"disabled": true
 						},
 						{
-							"key": "password",
-							"value": null
+							"key": "",
+							"value": null,
+							"disabled": true
 						}
 					]
 				}
@@ -136,6 +221,19 @@
 		},
 		{
 			"name": "Author detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -148,7 +246,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{URL}}/authors/{{AUTHOR_ID}}",
 					"host": [
@@ -164,6 +268,19 @@
 		},
 		{
 			"name": "Article detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -176,7 +293,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{URL}}/articles/{{ARTICLE_ID}}",
 					"host": [
@@ -185,6 +308,576 @@
 					"path": [
 						"articles",
 						"{{ARTICLE_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "author_id",
+							"value": "33b2b6b4-f846-4bb9-94dd-65461d35eff6",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "ggggg",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "hhhhh",
+							"type": "text"
+						},
+						{
+							"key": "summary",
+							"value": "kkkk",
+							"type": "text"
+						},
+						{
+							"key": "first_paragraph",
+							"value": "ççççç",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "ggggggrrrrwesrdtfyguhio,ṕç.esx5rctyvgubhinokml,w.cçwdlcçwdc,dw,ldcccccccccccccccccccccccccccccccccccccccccccccccccclddddddddddddddddddddddddddddddddddddddddddddddddddd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/articles/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/authors/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "author_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "summary",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "first_paragraph",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/articles/{{ARTICLE_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						"{{ARTICLE_ID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/authors/{{AUTHOR_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						"{{AUTHOR_ID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "9b0fb09a-ea32-495e-b581-7790f9394b31",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Oscar Wilde",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "picture",
+							"value": "http://127.0.0.1:8000/media/authors/Oscar-wilde.jpeg",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/authors/{{AUTHOR_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						"{{AUTHOR_ID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/articles/{{ARTICLE_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						"{{ARTICLE_ID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit article (patch)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "choose any field",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "author_id",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "summary",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "first_paragraph",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/articles/{{ARTICLE_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						"{{ARTICLE_ID}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit author (patch)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Has Token\"] = jsonData.access.length > 0 ;",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "choose any field",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/authors/{{AUTHOR_ID}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						"{{AUTHOR_ID}}",
+						""
 					]
 				}
 			},

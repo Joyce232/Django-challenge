@@ -12,13 +12,16 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class GenericArticleSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
     author_id = serializers.UUIDField(write_only=True)
 
     class Meta:
         model = Article
         fields = '__all__'
+
+
+class ArticleSerializer(GenericArticleSerializer):
 
     def validate(self, args):
         body = args.get('body', None)
@@ -31,12 +34,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         return Article.objects.create(**validated_data)
 
 
-class ArticleAnonSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer(many=False, read_only=True)
-
+class ArticleAnonSerializer(GenericArticleSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'author', 'category', 'title', 'summary', 'first_paragraph')
+        exclude = ('body',)
 
 
 class RegisterSerializer(serializers.ModelSerializer):
