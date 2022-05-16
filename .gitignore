@@ -1,3 +1,4 @@
 env/*
 challenge/media/authors/*
 challenge/.env
+.coverage

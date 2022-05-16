@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "bbf13826-53d7-4e0a-a1d2-7df5cd8f17a0",
+		"name": "challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Articles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/articles/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/authors/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/token/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/register/?first_name&last_name&email&username&password",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": null
+						},
+						{
+							"key": "last_name",
+							"value": null
+						},
+						{
+							"key": "email",
+							"value": null
+						},
+						{
+							"key": "username",
+							"value": null
+						},
+						{
+							"key": "password",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/authors/{{AUTHOR_ID}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"authors",
+						"{{AUTHOR_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Article detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/articles/{{ARTICLE_ID}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"articles",
+						"{{ARTICLE_ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -20,6 +20,16 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = '__all__'
 
+    def validate(self, args):
+        body = args.get('body', None)
+        if len(body) < 50:
+            raise serializers.ValidationError({'body': 'this field has to have at least 50 characters'})
+
+        return super().validate(args)
+
+    def create(self, validated_data):
+        return Article.objects.create(**validated_data)
+
 
 class ArticleAnonSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
