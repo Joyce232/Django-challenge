@@ -31,7 +31,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,8 +88,8 @@ DATABASES = {
         'NAME': 'challenge',
         'USER': 'user',
         'PASSWORD': 'challenge',
-        'HOST': 'localhost',
-        'PORT': '5433'
+        'HOST': 'postgres-db',
+        'PORT': '5432'
     }
 }
 

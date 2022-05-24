@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  jungle:
-    build: ..
-    container_name: jungle
-    command: bash -c " cd challenge && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - "8000:8000"
-    depends_on:
-      - postgres-db
-
   postgres-db:
     image: postgres
     container_name: postgres-db
@@ -21,3 +10,15 @@ services:
       POSTGRES_DB: challenge
     ports:
       - "5433:5432"
+
+  jungle:
+    build: .
+    container_name: jungle
+    command: bash -c "
+        cd challenge && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres-db
