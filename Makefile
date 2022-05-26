@@ -1,20 +1,20 @@
 up:
-	docker build .
-	docker-compose up
+	docker-compose up --build
 
 down:
 	docker-compose down
 
 build:
 	docker exec jungle pip install -r requirements.txt
-	cd challenge && \
-		docker exec jungle python3 manage.py migrate
+	docker exec jungle python3 manage.py makemigrations && \
+	docker exec jungle python3 manage.py migrate
 
 test:
-	cd challenge && \
-		docker exec jungle python3 manage.py test api.tests.model_tests && \
-		docker exec jungle python3 manage.py test api.tests.serializer_tests
+	docker exec jungle python3 manage.py test api.tests.model_tests && \
+	docker exec jungle python3 manage.py test api.tests.serializer_tests
 
+admin:
+	docker exec -it jungle python3 manage.py createsuperuser
 run:
 	docker exec -it jungle run $(command)
 

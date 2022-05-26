@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "bbf13826-53d7-4e0a-a1d2-7df5cd8f17a0",
 		"name": "challenge",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19546462"
 	},
 	"item": [
 		{
@@ -121,12 +122,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "admin",
+							"value": "",
 							"type": "text"
 						}
 					]
@@ -345,32 +346,32 @@
 					"formdata": [
 						{
 							"key": "author_id",
-							"value": "33b2b6b4-f846-4bb9-94dd-65461d35eff6",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "category",
-							"value": "ggggg",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "title",
-							"value": "hhhhh",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "summary",
-							"value": "kkkk",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "first_paragraph",
-							"value": "ççççç",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "body",
-							"value": "ggggggrrrrwesrdtfyguhio,ṕç.esx5rctyvgubhinokml,w.cçwdlcçwdc,dw,ldcccccccccccccccccccccccccccccccccccccccccccccccccclddddddddddddddddddddddddddddddddddddddddddddddddddd",
+							"value": "",
 							"type": "text"
 						}
 					]
@@ -427,13 +428,13 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "",
+							"value": "Cecília Meirelles",
 							"type": "text"
 						},
 						{
 							"key": "picture",
 							"type": "file",
-							"src": []
+							"src": "/home/joyce/Imagens/Cecília Meireles .jpg"
 						}
 					]
 				},
@@ -642,18 +643,19 @@
 					"formdata": [
 						{
 							"key": "id",
-							"value": "9b0fb09a-ea32-495e-b581-7790f9394b31",
-							"type": "text"
+							"value": "",
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "name",
-							"value": "Oscar Wilde",
+							"value": "",
 							"type": "text",
 							"disabled": true
 						},
 						{
 							"key": "picture",
-							"value": "http://127.0.0.1:8000/media/authors/Oscar-wilde.jpeg",
+							"value": "",
 							"type": "text",
 							"disabled": true
 						}
@@ -860,12 +862,14 @@
 						{
 							"key": "name",
 							"value": "",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "picture",
 							"type": "file",
-							"src": []
+							"src": [],
+							"disabled": true
 						}
 					]
 				},

@@ -14,8 +14,7 @@ services:
   jungle:
     build: .
     container_name: jungle
-    command: bash -c "
-        cd challenge && python manage.py runserver 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
     ports:

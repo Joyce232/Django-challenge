@@ -1,19 +1,30 @@
 from rest_framework import viewsets, generics, status
 from .models import Author, Article
 from .serializers import AuthorSerializer, ArticleSerializer, ArticleAnonSerializer, RegisterSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.response import Response
 import uuid
+
+
+class IsAdminOrReadOnly(BasePermission):
+    message = 'You need admin status to complete this operation'
+
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        else:
+            return request.user.is_staff
 
 
 class AuthorsViewSet(viewsets.ModelViewSet):
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()
+    permission_classes = [IsAdminOrReadOnly]
 
 
 class ArticlesViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_serializer_class(self):
         if self.request.user.is_authenticated:

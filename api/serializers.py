@@ -1,9 +1,6 @@
 from rest_framework import serializers
-from rest_framework.serializers import StringRelatedField
 from .models import Author, Article
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
 
 
 class AuthorSerializer(serializers.ModelSerializer):

@@ -1,4 +1,5 @@
 env/*
-challenge/media/authors/*
+media/*
 challenge/.env
-.coverage
+challenge/.coverage
+htmlcov/*
