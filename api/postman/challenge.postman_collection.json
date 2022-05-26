@@ -428,13 +428,13 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "Cecília Meirelles",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "picture",
 							"type": "file",
-							"src": "/home/joyce/Imagens/Cecília Meireles .jpg"
+							"src": ""
 						}
 					]
 				},

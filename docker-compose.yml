@@ -4,6 +4,8 @@ services:
   postgres-db:
     image: postgres
     container_name: postgres-db
+    volumes:
+      - .:/usr/src/app
     environment:
       POSTGRES_PASSWORD: challenge
       POSTGRES_USER: user
