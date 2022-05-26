@@ -1,11 +1,5 @@
-from api.serializers import AuthorSerializer, ArticleSerializer, RegisterSerializer
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from rest_framework import status
-from django.urls import reverse
-from api.models import Author, Article
-import json
 
 
 class SerializersTestCase(APITestCase):

@@ -1,11 +1,6 @@
-from api.serializers import AuthorSerializer, ArticleSerializer, RegisterSerializer
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from rest_framework import status
-from django.urls import reverse
 from api.models import Author
-import json
 
 
 class RegistrationTestCase(APITestCase):
@@ -19,6 +14,3 @@ class RegistrationTestCase(APITestCase):
     def test_str_function(self):
         author = Author.objects.create(name='Fiódor Dostoiévski')
         self.assertEqual(str(author), 'Fiódor Dostoiévski')
-
-
-

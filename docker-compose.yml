@@ -10,11 +10,13 @@ services:
       POSTGRES_PASSWORD: challenge
       POSTGRES_USER: user
       POSTGRES_DB: challenge
+      POSTGRES_PORT: 5432
     ports:
       - "5433:5432"
 
   jungle:
-    build: .
+   # build: .
+    image: django-challenge_jungle
     container_name: jungle
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
