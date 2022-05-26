@@ -3,6 +3,7 @@ Uma API feita utilizando o django rest framework e banco de dados PostgreSQL num
 
 -- O que você vai precisar:
 
+- Docker
 - Docker-compose
 - Makefile
 
