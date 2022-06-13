@@ -15,7 +15,6 @@ services:
       - "5433:5432"
 
   jungle:
-   # build: .
     image: django-challenge_jungle
     container_name: jungle
     command: python manage.py runserver 0.0.0.0:8000
@@ -25,3 +24,54 @@ services:
       - "8000:8000"
     depends_on:
       - postgres-db
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5671:5672"
+
+  celery:
+    container_name: celery
+    build: .
+    command: celery -A challenge worker -l INFO
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - CELERY_BROKER=amqp://guest@rabbitmq//
+      - CELERY_BACKEND=redis://redis:6379/0
+
+
+  flower:
+    container_name: flower
+    build: .
+    command: celery $api $tasks flower
+    ports:
+      - "5556:5555"
+    environment:
+      - CELERY_BROKER=amqp://guest@rabbitmq//
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - rabbitmq
+      - celery
+
+  celery_beat:
+    container_name: celery_beat
+    build: .
+    command: celery -A challenge beat -l INFO
+    environment:
+      - CELERY_BROKER=amqp://guest@rabbitmq//
+      - CELERY_BACKEND=redis://redis:6379/0
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - rabbitmq
+      - celery
+      - redis
+
+  redis:
+    container_name: redis
+    image: 'redis:alpine'
