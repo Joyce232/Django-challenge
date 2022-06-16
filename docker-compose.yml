@@ -4,8 +4,6 @@ services:
   postgres-db:
     image: postgres
     container_name: postgres-db
-    volumes:
-      - .:/usr/src/app
     environment:
       POSTGRES_PASSWORD: challenge
       POSTGRES_USER: user
@@ -13,9 +11,12 @@ services:
       POSTGRES_PORT: 5432
     ports:
       - "5433:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+
 
   jungle:
-    image: django-challenge_jungle
+    build: .
     container_name: jungle
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -75,3 +76,15 @@ services:
   redis:
     container_name: redis
     image: 'redis:alpine'
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: "single-node"
+
+volumes:
+  postgres:
