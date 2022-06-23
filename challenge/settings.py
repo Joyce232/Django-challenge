@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv, find_dotenv
-
+from celery.schedules import crontab
 
 load_dotenv(find_dotenv())
 
@@ -182,13 +182,12 @@ SIMPLE_JWT = {
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "amqp://guest@rabbitmq//")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0")
 
-"""CELERY_BEAT_SCHEDULE = {
-    "add": {
-        "task": "add",
-        "schedule": 5.0,
-        "args": (10, 10),
+CELERY_BEAT_SCHEDULE = {
+    "scraping": {
+        "task": "bsoup_scraping",
+        "schedule": crontab(minute="*/3",),
     }
-}"""
+}
 
 ELASTICSEARCH_DSL = {
     'default': {
