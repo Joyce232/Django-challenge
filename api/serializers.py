@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Author, Article
+from .documents import AuthorDocument, ArticleDocument
 from django.contrib.auth.models import User
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -61,3 +63,26 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+
+
+class ArticleDocumentSerializer(DocumentSerializer):
+    class Meta:
+        document = ArticleDocument
+        fields = {
+            "id",
+            "category",
+            "title",
+            "summary",
+            "first_paragraph",
+            "body",
+        }
+
+
+class AuthorDocumentSerializer(DocumentSerializer):
+    class Meta:
+        document = AuthorDocument
+        fields = {
+            "id",
+            "name",
+            "picture",
+        }

@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv, find_dotenv
-
+from celery.schedules import crontab
 
 load_dotenv(find_dotenv())
 
@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
-    'api'
+    'django_celery_beat',
+    'api',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf'
 ]
 
 MIDDLEWARE = [
@@ -176,3 +179,19 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1)
 }
 
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "amqp://guest@rabbitmq//")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0")
+
+CELERY_BEAT_SCHEDULE = {
+    "scraping": {
+        "task": "bsoup_scraping",
+        "schedule": crontab(minute="*/3",),
+    }
+}
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'elasticsearch',
+
+    }
+}
